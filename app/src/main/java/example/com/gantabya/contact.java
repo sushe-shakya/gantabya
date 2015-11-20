@@ -9,8 +9,6 @@ import android.os.Bundle;
 public class contact extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
-       // Intent intent = new Intent(getActivity(),MapsActivity.class);
-        //startActivity(intent);
 
         super.onCreate(savedInstanceState);
     }
