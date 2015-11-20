@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Gantabya</string>
+
+    <string name="title_section1">Tour Packages</string>
+    <string name="title_section2">Transportation</string>
+    <string name="title_section3">Search Packages</string>
+    <string name="title_section4">Search Places</string>
+    <string name="title_section5">Contact</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_packagedetail">Packagedetail</string>
+
+    <string name="hello_world">Hello world!</string>
+
+
+    <string-array name="row_description">
+               <item name="title_section1">Tour Packages</item>
+        <item name="title_section2">Transportation</item>
+        <item name="title_section3">Search Packages</item>
+        <item name="title_section4">Search Places</item>
+        <item name="title_section5">Contact</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+</resources>
