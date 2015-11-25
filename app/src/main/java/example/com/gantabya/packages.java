@@ -39,7 +39,7 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
 
     ListView listView;
     ProgressBar loader;
-    ArrayList<HashMap<String, String>> information;
+    static ArrayList<HashMap<String, String>> information=null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,12 +63,7 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Bundle bundle = new Bundle();
-        bundle.putString("packagename", information.get(position).get("packagename"));
-        bundle.putString("packageitinerary", information.get(position).get("packageitinerary"));
-        bundle.putString("packageimage",information.get(position).get("packageimage"));
         Fragment packagedetail = new package_detail(information.get(position));
-        packagedetail.setArguments(bundle);
         android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, packagedetail);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -107,7 +102,7 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
         @Override
         protected void onPostExecute(ArrayList<HashMap<String, String>> results) {
             try {
-                myadapter adapter = new myadapter(getContext(), results);
+                packageadapter adapter = new packageadapter(getContext(), results);
                 listView.setAdapter(adapter);
                 information = new ArrayList<HashMap<String, String>>();
                 information = results;
@@ -137,27 +132,39 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
                 HashMap<String, String> currentmap = null;
                 ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
                 Node currentchild = null;
+                String packagetype =null;
                 int count = 0;
                 for (int i = 0; i <itemslist.getLength(); i++) {
                     currentitem = itemslist.item(i);
                     currentmap = new HashMap<String, String>(); // current map is for package attributes
+                    // for attribute of root node
                     currentmap.put("packagename",currentitem.getAttributes().getNamedItem("Name").getTextContent());
-                    //currentmap.put("packageplace",currentitem.getAttributes().getNamedItem("Place").getTextContent());
-                    //currentmap.put("packageduration",currentitem.getAttributes().getNamedItem("Duration").getTextContent());
+                    currentmap.put("packageplace",currentitem.getAttributes().getNamedItem("Place").getTextContent());
+                    currentmap.put("packageduration",currentitem.getAttributes().getNamedItem("Duration").getTextContent());
                     currentmap.put("packageprice",currentitem.getAttributes().getNamedItem("Cost").getTextContent());
                     //currentmap.put("packagedes",currentitem.getAttributes().getNamedItem("Description").getTextContent());
                     currentmap.put("packageimage",currentitem.getAttributes().getNamedItem("Image").getTextContent());
                     currentiem_childrenlist = currentitem.getChildNodes();
-                    Log.d("gantabya",currentiem_childrenlist.item(1).getTextContent());
-                    currentmap.put("packageitinerary",currentiem_childrenlist.item(1).getTextContent());
-                  /*for(int j=0;j<currentiem_childrenlist.getLength();j++)
+
+                    //for further child nodes
+                    for(int j=0;j<currentiem_childrenlist.getLength();j++)
                     {
-                        if(currentiem_childrenlist.item(j).equals("Itinerary"))
+                        currentchild = currentiem_childrenlist.item(j);
+                        if(currentchild.getNodeName().equalsIgnoreCase("Itinerary"))
                         {
-                            currentmap.put("packageitinerary",currentiem_childrenlist.item(j).getTextContent());
+                            currentmap.put("packageitinerary",currentchild.getTextContent());
                         }
-                        Log.d("gantabya",currentmap.get("packageitinerary"));
-                    }*/
+                        if(currentchild.getNodeName().equalsIgnoreCase("PackageTypes"))
+                        {
+                          for(int k=0;k<currentchild.getChildNodes().getLength();k++) {
+                              if(currentchild.getChildNodes().item(k).getNodeName().equalsIgnoreCase("Type")){
+                              packagetype = currentchild.getChildNodes().item(k).getAttributes().getNamedItem("Name").getTextContent();
+                              currentmap.put("packagetype", packagetype);}
+                          }
+                        }
+
+                    }
+
 
                     if (currentmap != null && !currentmap.isEmpty())
                         results.add(currentmap);
@@ -173,13 +180,13 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
 
     }
 }
-class myadapter extends BaseAdapter
+class packageadapter extends BaseAdapter
 {
     ArrayList<HashMap<String,String>> dataSource;
     Context context;
     LayoutInflater layoutInflater;
     Myholder holder = null;
-    public myadapter(Context context,ArrayList<HashMap<String,String>> dataSource)
+    public packageadapter(Context context, ArrayList<HashMap<String, String>> dataSource)
     {
         this.dataSource = dataSource;
         this.context = context;

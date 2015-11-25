@@ -25,5 +25,26 @@
         <item name="title_section4">Search Places</item>
         <item name="title_section5">Contact</item>
     </string-array>
+
+    <string-array name="pricelist">
+        <item name="first">Below Rs.10,000</item>
+        <item name="second">Rs.10,000-Rs.30,000</item>
+        <item name="third">Rs.30,000-Rs.50,000</item>
+        <item name="fourth">Rs.50,000-Rs.70,000</item>
+        <item name="fifth">Above Rs.70,000</item>
+    </string-array>
+    <string-array name="packagetypelist">
+        <item name="type1">Adventure</item>
+        <item name="type2">Cultural Heritage</item>
+        <item name="type3">Hiking</item>
+        <item name="type4">Jungle Safari</item>
+        <item name="type5">Mountaineering</item>
+        <item name="type6">Natural Beauty</item>
+        <item name="type7">Relaxing</item>
+        <item name="type8">Sight-seeing</item>
+        <item name="type9">Trekking</item>
+        <item name="type10">Wildlife</item>
+    </string-array>
+
     <string name="title_activity_maps">Map</string>
 </resources>

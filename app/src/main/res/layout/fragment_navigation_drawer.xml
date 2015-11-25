@@ -10,10 +10,13 @@
         android:layout_height="300dp"
         android:id="@+id/drawerlistView"
         android:choiceMode="singleChoice"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:divider="#125688"
+        android:dividerHeight="1dp"
         android:layout_alignParentTop="true" />
+
 
 </RelativeLayout>
