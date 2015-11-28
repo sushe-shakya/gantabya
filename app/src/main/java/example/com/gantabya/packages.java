@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -142,8 +143,9 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
                     currentmap.put("packageplace",currentitem.getAttributes().getNamedItem("Place").getTextContent());
                     currentmap.put("packageduration",currentitem.getAttributes().getNamedItem("Duration").getTextContent());
                     currentmap.put("packageprice",currentitem.getAttributes().getNamedItem("Cost").getTextContent());
-                    //currentmap.put("packagedes",currentitem.getAttributes().getNamedItem("Description").getTextContent());
                     currentmap.put("packageimage",currentitem.getAttributes().getNamedItem("Image").getTextContent());
+                    currentmap.put("packagebesttime",currentitem.getAttributes().getNamedItem("Season").getTextContent());
+                    currentmap.put("packageduration",currentitem.getAttributes().getNamedItem("Duration").getTextContent());
                     currentiem_childrenlist = currentitem.getChildNodes();
 
                     //for further child nodes
@@ -153,6 +155,10 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
                         if(currentchild.getNodeName().equalsIgnoreCase("Itinerary"))
                         {
                             currentmap.put("packageitinerary",currentchild.getTextContent());
+                        }
+                        if(currentchild.getNodeName().equalsIgnoreCase("Detail"))
+                        {
+                            currentmap.put("packagedetail",currentchild.getTextContent());
                         }
                         if(currentchild.getNodeName().equalsIgnoreCase("PackageTypes"))
                         {
@@ -226,18 +232,22 @@ class packageadapter extends BaseAdapter
         HashMap<String,String> currentItem = dataSource.get(position);
         holder.title.setText(currentItem.get("packagename"));
         holder.pubdate.setText("Rs."+currentItem.get("packageprice"));
+        holder.duration.setText(currentItem.get("packageduration")+" day(s)");
         Picasso.with(context).load(currentItem.get("packageimage")).into(holder.image);
             return row;
     }
 }
 class Myholder{
-    TextView title, pubdate;
+    TextView title, pubdate, duration;
+    RatingBar rate;
     ImageView image;
     public Myholder(View view)
     {
         title = (TextView) view.findViewById(R.id.title);
         pubdate= (TextView) view.findViewById(R.id.pubdate);
+        duration=(TextView)view.findViewById(R.id.duration);
         image = (ImageView) view.findViewById(R.id.packageimage);
+
     }
 }
 

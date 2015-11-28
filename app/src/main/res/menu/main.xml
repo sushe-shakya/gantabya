@@ -1,4 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/search_icon"
+        android:icon="@drawable/ic_place_white_24dp"
+        android:title="search_places"
+        app:showAsAction="always"/>
 </menu>

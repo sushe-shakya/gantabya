@@ -30,6 +30,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,6 +71,7 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    private ImageView mDrawerImageView;
 
     public NavigationDrawerFragment() {
     }
@@ -105,6 +108,9 @@ public class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
         View myview;
         myview = inflater.inflate(R.layout.fragment_navigation_drawer,container,false);
+        mDrawerImageView =(ImageView)myview.findViewById(R.id.navimage);
+        mDrawerImageView.setImageResource(R.drawable.navimage);
+       // Picasso.with(getContext()).load("https://upload.wikimedia.org/wikipedia/commons/6/66/Pokhara_and_Phewa_Lake.jpg").into(mDrawerImageView);
         mDrawerListView = (ListView)myview.findViewById(R.id.drawerlistView);
 
         try {

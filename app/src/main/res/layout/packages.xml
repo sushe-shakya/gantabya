@@ -22,12 +22,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:background="#7F000000"
-        android:layout_alignBottom="@+id/packageimage"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/packageimage" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="PUBDATE"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -45,5 +45,19 @@
         android:layout_below="@+id/packageimage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:gravity="end"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/white"
+        android:background="#7F000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duration"
+        android:id="@+id/duration"
+        android:layout_above="@+id/title"
+        android:layout_toRightOf="@+id/pubdate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

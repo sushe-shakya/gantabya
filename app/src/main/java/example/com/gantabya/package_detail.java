@@ -1,6 +1,8 @@
 package example.com.gantabya;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -12,6 +14,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -32,7 +36,7 @@ public class package_detail extends Fragment {
     public package_detail(HashMap<String, String> information) {
         this.information = information;
     }
-
+    Button callbutton;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +46,15 @@ public class package_detail extends Fragment {
         View x =  inflater.inflate(R.layout.package_detail,null);
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
-
+         callbutton =  (Button)x.findViewById(R.id.callbutton);
+        callbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:9841413293"));
+                startActivity(intent);
+            }
+        });
         /**
          *Set an Adapter for the View Pager
          */
@@ -90,9 +102,9 @@ public class package_detail extends Fragment {
                 {
                     return new packageitinerary(information.get("packageitinerary"));
                 }
-                case 2 : return new packageoverview();
+                case 2 : return new packagedetail(information.get("packagedetail"));
                 case 3 : return new packageoverview();
-                case 4 : return new packageoverview();
+                case 4 : return new packagebesttime(information.get("packagebesttime"));
 
             }
             return null;
@@ -122,7 +134,7 @@ public class package_detail extends Fragment {
                 case 3 :
                     return "Cost Inclusion/Exclusion";
                 case 4:
-                    return "Company";
+                    return "Best Time To Visit";
             }
             return null;
         }
@@ -149,8 +161,8 @@ public class package_detail extends Fragment {
             ImageView imageView = new ImageView(context);
 
             int padding = context.getResources().getDimensionPixelSize(R.dimen.pixel);
-            imageView.setPadding(padding, padding, padding, padding);
-            //imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            //imageView.setPadding(padding, padding, padding, padding);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             //imageView.setImageResource(GalImages[position]);
             Picasso.with(context).load(information.get("packageimage")).into(imageView);
             ((ViewPager) container).addView(imageView, 0);
