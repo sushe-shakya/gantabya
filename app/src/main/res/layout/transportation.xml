@@ -1,21 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
 
-    <ImageView
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/transimage"
+        android:text="Search"
+        android:textColor="@android:color/black"
+        android:id="@+id/ticketsearchbutton"
+        android:layout_below="@+id/ticketdestination"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible" />
+
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:id="@+id/gridView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:numColumns="2"
+        android:layout_below="@+id/ticketsearchbutton" />
+
+    <ProgressBar
+        android:id="@+id/busticketloader"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="97dp"
+        android:layout_alignTop="@+id/gridView"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ticketfrom"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="From"
+        android:visibility="invisible" />
 
-    <ImageView
-        android:layout_width="match_parent"
+    <EditText
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/transimage2"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher" />
+        android:id="@+id/ticketdestination"
+        android:layout_below="@+id/ticketfrom"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/ticketsearchbutton"
+        android:layout_alignEnd="@+id/ticketsearchbutton"
+        android:hint="Destination"
+        android:visibility="invisible" />
+
 </RelativeLayout>

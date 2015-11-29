@@ -75,7 +75,7 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
 
         @Override
         protected ArrayList<HashMap<String, String>> doInBackground(Void... params) {
-            String downloadURL = "http://gantabya.cu.cc/get_package_xml.php"; //url to download the xml content from
+            String downloadURL = "http://gantabya.cu.cc/xml/packages/"; //url to download the xml content from
             ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
             try {
                 URL url = new URL(downloadURL);
@@ -218,7 +218,7 @@ class packageadapter extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
-
+        Myholder holder = null;
         if(row==null)
         {
             row = layoutInflater.inflate(R.layout.packages,parent,false);

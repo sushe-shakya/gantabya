@@ -1,6 +1,5 @@
 package example.com.gantabya;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -43,10 +42,10 @@ public class search_packages extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myview;
         myview = inflater.inflate(R.layout.search_packages, container, false);
-        packagetypes = (Spinner) myview.findViewById(R.id.spinner);
-        packageprice = (Spinner) myview.findViewById(R.id.spinner2);
-        foundpackages= (ListView) myview.findViewById(R.id.listView2);
-        packagesearchbutton = (Button) myview.findViewById(R.id.packagesearchbutton);
+        packagetypes = (Spinner) myview.findViewById(R.id.from);
+        packageprice = (Spinner) myview.findViewById(R.id.destination);
+        foundpackages= (ListView) myview.findViewById(R.id.ticketlistview);
+        packagesearchbutton = (Button) myview.findViewById(R.id.ticketsearchbutton);
         foundresults = new ArrayList<HashMap<String, String>>();
 
         ArrayAdapter priceadapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_dropdown_item,getResources().getStringArray(R.array.pricelist));
@@ -112,7 +111,7 @@ public class search_packages extends android.support.v4.app.Fragment {
                     }
                 }
 
-                packageadapter packadapter = new packageadapter(getContext(), foundresults);
+                busticketadapter packadapter = new busticketadapter(getContext(), foundresults);
                 foundpackages.setAdapter(packadapter);
 
                 if (foundresults.isEmpty()) {
