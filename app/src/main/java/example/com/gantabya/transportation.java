@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -33,7 +36,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Vector;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -42,12 +47,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
  * Created by Prasis on 11/10/2015.
  */
 public class transportation extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener {
-    EditText ticketfrom, ticketdestination;
+    AutoCompleteTextView ticketfrom, ticketdestination;
+    TextView line;
     GridView ticketgridView;
     ArrayList<HashMap<String, String>> ticketinformation=null;
     Button ticketsearchbutton;
     ProgressBar busticketloader;
-
+    Vector<String> destination = new Vector<String>();
+    Vector<String> from = new Vector<String>();
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
 
@@ -58,13 +65,13 @@ public class transportation extends android.support.v4.app.Fragment implements A
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myview;
-
         myview = inflater.inflate(R.layout.transportation,container,false);
         ticketsearchbutton = (Button) myview.findViewById(R.id.ticketsearchbutton);
         ticketgridView = (GridView)myview.findViewById(R.id.gridView);
         busticketloader = (ProgressBar) myview.findViewById(R.id.busticketloader);
-        ticketfrom = (EditText)myview.findViewById(R.id.ticketfrom);
-        ticketdestination = (EditText)myview.findViewById(R.id.ticketdestination);
+        ticketfrom = (AutoCompleteTextView)myview.findViewById(R.id.ticketfrom);
+        ticketdestination = (AutoCompleteTextView)myview.findViewById(R.id.ticketdestination);
+        line =(TextView)myview.findViewById(R.id.line);
         try{
             ticketlist ticobj = new ticketlist();
             ticobj.execute();}
@@ -72,10 +79,26 @@ public class transportation extends android.support.v4.app.Fragment implements A
         {
             Log.d("gantabya","error while calling ticketlist");
         }
+        ArrayAdapter<String> fromadapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,from);
+        ticketfrom.setAdapter(fromadapter);
+        ArrayAdapter<String> desadapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,destination);
+        ticketdestination.setAdapter(desadapter);
         ticketsearchbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                ArrayList<HashMap<String, String>> ticketfoundinformation = new ArrayList<>();
+                ticketfoundinformation.clear();
+                for (int i = 0; i < ticketinformation.size(); i++) {
 
+                    if (ticketfrom.getText().toString().equalsIgnoreCase(ticketinformation.get(i).get("ticketfrom")) && ticketdestination.getText().toString().equalsIgnoreCase(ticketinformation.get(i).get("ticketdestination")))
+                        ticketfoundinformation.add(ticketinformation.get(i));
+                }
+                if (ticketfoundinformation.isEmpty())
+                {Toast.makeText(getContext(), "Match not found", Toast.LENGTH_SHORT).show();}
+                busticketadapter ticketfoundadapter = new busticketadapter(getContext(), ticketfoundinformation);
+                ticketgridView.setAdapter(ticketfoundadapter);
             }
         });
         ticketgridView.setOnItemClickListener(this);
@@ -133,6 +156,7 @@ public class transportation extends android.support.v4.app.Fragment implements A
                 ticketdestination.setVisibility(View.VISIBLE);
                 ticketfrom.setVisibility(View.VISIBLE);
                 ticketsearchbutton.setVisibility(View.VISIBLE);
+                line.setVisibility(View.VISIBLE);
             }
             catch (Exception e)
             {
@@ -164,8 +188,17 @@ public class transportation extends android.support.v4.app.Fragment implements A
                     currentitem = itemslist.item(i);
                     currentmap = new HashMap<String, String>(); // current map is for package attributes
                     // for attribute of root node
-                    currentmap.put("ticketfrom",currentitem.getAttributes().getNamedItem("PlaceFrom").getTextContent());
-                    currentmap.put("ticketdestination",currentitem.getAttributes().getNamedItem("PlaceTo").getTextContent());
+                    currentmap.put("ticketfrom", currentitem.getAttributes().getNamedItem("PlaceFrom").getTextContent());
+                    if(!from.contains(currentitem.getAttributes().getNamedItem("PlaceFrom").getTextContent()))
+                    {
+                        Log.d("gantabya","unique element");
+                        from.add(new String(currentitem.getAttributes().getNamedItem("PlaceFrom").getTextContent()));
+                    }
+                    currentmap.put("ticketdestination",new String(currentitem.getAttributes().getNamedItem("PlaceTo").getTextContent()));
+                    if(!destination.contains(currentitem.getAttributes().getNamedItem("PlaceTo").getTextContent()))
+                    {
+                        destination.add(new String(currentitem.getAttributes().getNamedItem("PlaceTo").getTextContent()));
+                    }
                     currentmap.put("ticketdeparturetime",currentitem.getAttributes().getNamedItem("DepartureTime").getTextContent());
                     currentmap.put("ticketarrivaltime",currentitem.getAttributes().getNamedItem("ArrivalTime").getTextContent());
                     currentmap.put("ticketimage",currentitem.getAttributes().getNamedItem("Image").getTextContent());
@@ -245,19 +278,20 @@ class busticketadapter extends BaseAdapter
             holder = (busticketholder) row.getTag();
         }
         HashMap<String,String> currentItem = busticketdataSource.get(position);
-        holder.ticketprice.setText(currentItem.get("ticketcost"));
+        holder.ticketprice.setText("Rs."+ currentItem.get("ticketcost"));
+        holder.ticketroute.setText(currentItem.get("ticketfrom")+"-"+currentItem.get("ticketdestination"));
         Picasso.with(context).load(currentItem.get("ticketimage")).into(holder.ticketimage);
         return row;
     }
 }
 class busticketholder {
-    TextView ticketprice;
+    TextView ticketprice,ticketroute;
     ImageView ticketimage;
     public busticketholder(View view)
     {
         ticketprice = (TextView) view.findViewById(R.id.ticketprice);
         ticketimage = (ImageView) view.findViewById(R.id.busticketimage);
-
+        ticketroute = (TextView)view.findViewById(R.id.route);
     }
 }
 

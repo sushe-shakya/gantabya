@@ -4,7 +4,7 @@
 
     <ImageView
         android:layout_width="160dp"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:id="@+id/busticketimage"
         android:src="@drawable/offline"
         android:layout_marginRight="10dp"
@@ -17,7 +17,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/ticketprice"
         android:text="Price"
-        android:layout_alignBottom="@+id/busticketimage"
+        android:layout_below="@+id/route"
+        android:layout_alignLeft="@+id/route"
+        android:layout_alignStart="@+id/route"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:background="#7F000000"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Route"
+        android:textColor="@android:color/white"
+        android:id="@+id/route"
+        android:layout_below="@+id/busticketimage"
         android:layout_alignLeft="@+id/busticketimage"
         android:layout_alignStart="@+id/busticketimage"
         android:layout_marginRight="10dp" />

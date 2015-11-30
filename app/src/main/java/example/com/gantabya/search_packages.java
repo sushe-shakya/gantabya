@@ -84,7 +84,7 @@ public class search_packages extends android.support.v4.app.Fragment {
                 foundresults.clear();// to clear the previous results
                 String currentprice, currenttype = null;
                 Integer price = 0;
-                for (int i = 0; i <= 5; i++) {
+                for (int i = 0; i <= packages.information.size(); i++) {
                     try {
                         price = Integer.parseInt(packages.information.get(i).get("packageprice").replaceAll("[\\D]",""))/100;
                         Log.d("gantabya",price.toString());
@@ -111,7 +111,7 @@ public class search_packages extends android.support.v4.app.Fragment {
                     }
                 }
 
-                busticketadapter packadapter = new busticketadapter(getContext(), foundresults);
+                packageadapter packadapter = new packageadapter(getContext(), foundresults);
                 foundpackages.setAdapter(packadapter);
 
                 if (foundresults.isEmpty()) {
