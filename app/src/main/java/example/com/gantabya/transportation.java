@@ -105,7 +105,7 @@ public class transportation extends android.support.v4.app.Fragment implements A
         return myview;
     }
 
-    @Override
+    @Override // called when a bus ad is clicked
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment ticketdetail = new ticket_detail(ticketinformation.get(position));
         android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, ticketdetail);
