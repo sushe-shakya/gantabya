@@ -1,6 +1,8 @@
 package example.com.gantabya;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,7 +38,7 @@ public class package_detail extends Fragment {
     public package_detail(HashMap<String, String> information) {
         this.information = information;
     }
-    Button callbutton;
+    Button bookbutton;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,13 +48,29 @@ public class package_detail extends Fragment {
         View x =  inflater.inflate(R.layout.package_detail,null);
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
-         callbutton =  (Button)x.findViewById(R.id.callbutton);
-        callbutton.setOnClickListener(new View.OnClickListener() {
+         bookbutton =  (Button)x.findViewById(R.id.bookpackagebutton);
+        bookbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:9841413293"));
-                startActivity(intent);
+                CharSequence bookingoptions[] = new CharSequence[] {"Book by Call","Book by mail"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Booking Options");
+                builder.setItems(bookingoptions, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:// book by call
+
+                                Intent intent = new Intent(Intent.ACTION_DIAL);
+                                intent.setData(Uri.parse("tel:"+information.get("packagecompanyphone")));
+                                startActivity(intent);
+                            case 1:// book by mail
+
+                        }
+                    }
+                });
+                builder.show();
+
             }
         });
         /**
@@ -97,13 +115,13 @@ public class package_detail extends Fragment {
         public Fragment getItem(int position)
         {
             switch (position){
-                case 0 :return new packageoverview();
+                case 0 :{return new packageoverview(information.get("packageoverview"));}
                 case 1 :
                 {
                     return new packageitinerary(information.get("packageitinerary"));
                 }
                 case 2 : return new packagedetail(information.get("packagedetail"));
-                case 3 : return new packageoverview();
+                case 3 : return new packagecostinclusion_exclusion(information.get("packagecostinclusion"),information.get("packagecostexclusion"));
                 case 4 : return new packagebesttime(information.get("packagebesttime"));
 
             }

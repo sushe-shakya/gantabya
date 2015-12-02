@@ -210,13 +210,23 @@ public class transportation extends android.support.v4.app.Fragment implements A
                     for(int j=0;j<currentiem_childrenlist.getLength();j++)
                     {
                         currentchild = currentiem_childrenlist.item(j);
-
+                        if(currentchild.getNodeName().equalsIgnoreCase("detail"))
+                        {
+                            currentmap.put("ticketbusdetail",currentchild.getTextContent());
+                        }
                         if(currentchild.getNodeName().equalsIgnoreCase("agency"))
                         {
                             currentmap.put("ticketagencynumber",currentchild.getAttributes().getNamedItem("Phone").getTextContent());
                         }
                         if(currentchild.getNodeName().equalsIgnoreCase("weekdays"))
                         {
+                            String availabledays=currentchild.getChildNodes().item(0).getTextContent();
+                            //get further child nodes
+                            for(int k=1;k<currentchild.getChildNodes().getLength();k++)
+                            {
+                                availabledays= availabledays+","+currentchild.getChildNodes().item(k).getTextContent();
+                            }
+                           currentmap.put("ticketavailabledays",availabledays);
                         }
 
                     }

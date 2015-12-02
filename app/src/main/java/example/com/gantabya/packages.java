@@ -156,10 +156,29 @@ public class packages extends Fragment implements AdapterView.OnItemClickListene
                         {
                             currentmap.put("packageitinerary",currentchild.getTextContent());
                         }
+                        if(currentchild.getNodeName().equalsIgnoreCase("CostInclusion"))
+                        {
+                            currentmap.put("packagecostinclusion",currentchild.getTextContent());
+                        }
+                        if(currentchild.getNodeName().equalsIgnoreCase("CostExclusion"))
+                        {
+                            currentmap.put("packagecostexclusion",currentchild.getTextContent());
+                        }
+                        if(currentchild.getNodeName().equalsIgnoreCase("Overview"))
+                        {
+                            currentmap.put("packageoverview",currentchild.getTextContent());
+                        }
+
                         if(currentchild.getNodeName().equalsIgnoreCase("Detail"))
                         {
                             currentmap.put("packagedetail",currentchild.getTextContent());
                         }
+                        if(currentchild.getNodeName().equalsIgnoreCase("Company"))
+                        {
+                            currentmap.put("packagecompanyname",currentchild.getAttributes().getNamedItem("Name").getTextContent());
+                            currentmap.put("packagecompanyphone",currentchild.getAttributes().getNamedItem("Phone").getTextContent());
+                        }
+
                         if(currentchild.getNodeName().equalsIgnoreCase("PackageTypes"))
                         {
                           for(int k=0;k<currentchild.getChildNodes().getLength();k++) {

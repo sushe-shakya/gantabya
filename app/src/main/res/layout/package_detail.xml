@@ -33,20 +33,21 @@
 
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="176dp">
+        android:layout_height="178dp">
 
     </android.support.v4.view.ViewPager>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#125688"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:text="Book by call"
-        android:id="@+id/callbutton"
-        android:layout_gravity="center_horizontal"
-        />
+        android:text="Book ticket"
+        android:id="@+id/bookpackagebutton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </LinearLayout>
