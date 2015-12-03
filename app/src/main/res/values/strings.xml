@@ -2,10 +2,9 @@
     <string name="app_name">Gantabya</string>
 
     <string name="title_section1">Tour Packages</string>
-    <string name="title_section2">Transportation</string>
+    <string name="title_section2">Bus Service</string>
     <string name="title_section3">Search Packages</string>
-    <string name="title_section4">Search Places</string>
-    <string name="title_section5">Contact</string>
+    <string name="title_section4">Contact Us</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -20,10 +19,9 @@
 
     <string-array name="row_description">
                <item name="title_section1">Tour Packages</item>
-        <item name="title_section2">Transportation</item>
+        <item name="title_section2">Bus Service</item>
         <item name="title_section3">Search Packages</item>
-        <item name="title_section4">Search Places</item>
-        <item name="title_section5">Contact</item>
+        <item name="title_section4">Contact Us</item>
     </string-array>
 
     <string-array name="pricelist">

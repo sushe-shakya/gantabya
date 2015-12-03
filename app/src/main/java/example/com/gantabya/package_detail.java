@@ -33,7 +33,7 @@ public class package_detail extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     public static ViewPager viewPager1;
-    public static int int_items = 5 ;
+    public static int int_items = 6;
     HashMap<String,String> information;
     public package_detail(HashMap<String, String> information) {
         this.information = information;
@@ -121,8 +121,9 @@ public class package_detail extends Fragment {
                     return new packageitinerary(information.get("packageitinerary"));
                 }
                 case 2 : return new packagedetail(information.get("packagedetail"));
-                case 3 : return new packagecostinclusion_exclusion(information.get("packagecostinclusion"),information.get("packagecostexclusion"));
-                case 4 : return new packagebesttime(information.get("packagebesttime"));
+                case 3 : return new packagecostinclusion(information.get("packagecostinclusion"));
+                case 4 : return new packagecostexclusion(information.get("packagecostexclusion"));
+                case 5 : return new packagebesttime(information.get("packagebesttime"));
 
             }
             return null;
@@ -150,8 +151,10 @@ public class package_detail extends Fragment {
                 case 2 :
                     return "Detail";
                 case 3 :
-                    return "Cost Inclusion/Exclusion";
+                    return "Cost Inclusion";
                 case 4:
+                    return "Cost Exclusion";
+                case 5:
                     return "Best Time To Visit";
             }
             return null;

@@ -1,8 +1,12 @@
 package example.com.gantabya;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.PersistableBundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,15 +16,18 @@ import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,10 +51,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
        mTitle = getString(R.string.title_section1);
@@ -78,10 +89,7 @@ public class MainActivity extends AppCompatActivity
                     new_fragment = new search_packages();
 
                     break;
-                case 3: // for Search Places
-                    new_fragment = new search_places();
-                    break;
-                case 4: // for Contact
+                case 3: // for contact
                     new_fragment = new contact();
                     break;
                 default:
@@ -115,8 +123,6 @@ public class MainActivity extends AppCompatActivity
             case 4:
                 mTitle = getString(R.string.title_section4);
                 break;
-            case 5:
-                mTitle = getString(R.string.title_section5);
         }
     }
 
@@ -152,10 +158,13 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId())
         {
-            case R.id.search_icon:
-                onNavigationDrawerItemSelected(3);
-                onSectionAttached(3);
-                restoreActionBar();
+            case R.id.more_icon:
+                //Very Very important concept
+                View menuItemView = findViewById(item.getItemId());
+                PopupMenu popup = new PopupMenu(this,menuItemView);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.menu_packagedetail, popup.getMenu());
+                popup.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

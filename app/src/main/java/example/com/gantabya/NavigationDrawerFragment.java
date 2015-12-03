@@ -319,7 +319,7 @@ class navadapter extends BaseAdapter
       //  row = new ArrayList<Singlerow>();
         Resources res = context.getResources();
         titles = res.getStringArray(R.array.row_description);
-        images = new int[]{R.drawable.ic_book_black_24dp, R.drawable.ic_directions_bus_black_24dp, R.drawable.ic_search_black_24dp, R.drawable.ic_place_black_24dp, R.drawable.ic_contact_phone_black_24dp};
+        images = new int[]{R.drawable.ic_book_black_24dp, R.drawable.ic_directions_bus_black_24dp, R.drawable.ic_search_black_24dp,R.drawable.ic_contact_phone_black_24dp};
        //for(int i = 0; i< 6; i++)
         //row.add(new Singlerow(titles[i],images[i]));
 
