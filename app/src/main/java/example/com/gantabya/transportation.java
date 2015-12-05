@@ -57,7 +57,6 @@ public class transportation extends android.support.v4.app.Fragment {
     Vector<String> from = new Vector<String>();
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
-
         super.onCreate(savedInstanceState);
     }
 
@@ -70,7 +69,9 @@ public class transportation extends android.support.v4.app.Fragment {
         ticketgridView = (GridView)myview.findViewById(R.id.gridView);
         busticketloader = (ProgressBar) myview.findViewById(R.id.busticketloader);
         ticketfrom = (AutoCompleteTextView)myview.findViewById(R.id.ticketfrom);
+        ticketfrom.setText("");
         ticketdestination = (AutoCompleteTextView)myview.findViewById(R.id.ticketdestination);
+        ticketdestination.setText("");
         line =(TextView)myview.findViewById(R.id.line);
         try{
             ticketlist ticobj = new ticketlist();

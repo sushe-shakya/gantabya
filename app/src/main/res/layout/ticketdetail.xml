@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
@@ -121,21 +125,9 @@
         android:layout_marginLeft="43dp"
         android:layout_marginStart="43dp" />
 
-    ]]>
 
-    <Button
-        android:textColor="@android:color/white"
-        android:background="#125688"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Book ticket"
-        android:id="@+id/bookbutton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/detail_busimage"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
+    ]]>
 
     <ImageView
         android:layout_width="160dp"
@@ -195,5 +187,19 @@
         android:layout_marginBottom="40dp"
         android:layout_marginRight="10dp" />
 
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        app:layout_anchor="@id/textView4"
+        app:layout_anchorGravity="bottom|end"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:borderWidth="10dp"
+        app:fabSize="normal"
+        android:src="@drawable/ic_book_white_24dp"
+        android:layout_gravity="end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/viewseatchart_button"
+        android:layout_alignEnd="@+id/viewseatchart_button" />
 </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

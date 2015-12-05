@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,7 +39,7 @@ public class package_detail extends Fragment {
     public package_detail(HashMap<String, String> information) {
         this.information = information;
     }
-    Button bookbutton;
+    FloatingActionButton bookbutton;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class package_detail extends Fragment {
         View x =  inflater.inflate(R.layout.package_detail,null);
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
-         bookbutton =  (Button)x.findViewById(R.id.bookpackagebutton);
+         bookbutton =  (FloatingActionButton)x.findViewById(R.id.fab);
         bookbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +116,9 @@ public class package_detail extends Fragment {
         public Fragment getItem(int position)
         {
             switch (position){
-                case 0 :{return new packageoverview(information.get("packageoverview"));}
+                case 0 :{
+                    return new packageoverview(information.get("packageoverview"));
+                }
                 case 1 :
                 {
                     return new packageitinerary(information.get("packageitinerary"));

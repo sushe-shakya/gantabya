@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +24,8 @@ import java.util.HashMap;
  * Created by Prasis on 11/29/2015.
  */
 public class ticket_detail extends Fragment {
-    Button viewseatchartbutton, bookbusticketbutton;
+    FloatingActionButton bookbusticketbutton;
+    Button viewseatchartbutton;
     TextView busticketdestination, busticketcost, busticketdeparture, busticketarrival, busticketextradetail,busticketworkingdays;
     ImageView busimage;
     HashMap<String,String> ticketdetail;
@@ -38,9 +40,8 @@ public class ticket_detail extends Fragment {
         String departuretime;
         int departurehour,departureminute;
         myview = inflater.inflate(R.layout.ticketdetail,container,false);
-        bookbusticketbutton= (Button) myview.findViewById(R.id.bookbutton);
+        bookbusticketbutton= (FloatingActionButton) myview.findViewById(R.id.fab);
         viewseatchartbutton= (Button) myview.findViewById(R.id.viewseatchart_button);
-        bookbusticketbutton= (Button) myview.findViewById(R.id.bookbutton);
         busticketdestination= (TextView) myview.findViewById(R.id.detail_destination);
         busticketcost= (TextView) myview.findViewById(R.id.detail_cost);
         busticketdeparture= (TextView) myview.findViewById(R.id.detail_departure);

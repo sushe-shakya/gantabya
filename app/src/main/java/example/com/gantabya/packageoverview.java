@@ -13,17 +13,17 @@ import android.widget.TextView;
  */
 public class packageoverview extends Fragment {
 String overview;
-    TextView packageoverview;
+    TextView package_overview;
     public packageoverview(String packageoverview) {
-        this.overview=overview;
+        overview=packageoverview;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myview = inflater.inflate(R.layout.packageoverview,container,false);
-        packageoverview= (TextView) myview.findViewById(R.id.overview);
-        packageoverview.setText(overview);
+        package_overview= (TextView) myview.findViewById(R.id.overview);
+        package_overview.setText(overview);
         return myview;
     }
 }
