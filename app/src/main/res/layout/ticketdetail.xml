@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Destination:"
+        android:id="@+id/destination_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/detail_busimage"
+        android:layout_marginBottom="5dp"
+        android:layout_alignRight="@+id/detail_busimage"
+        android:layout_alignEnd="@+id/detail_busimage" />
+
+    <TextView
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/detail_destination"
+        android:layout_alignTop="@+id/destination_textview"
+        android:layout_toRightOf="@+id/destination_textview"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Departure:"
+        android:id="@+id/departure_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/destination_textview"
+        android:layout_toStartOf="@+id/detail_destination"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/detail_departure"
+        android:layout_alignRight="@+id/detail_destination"
+        android:layout_alignEnd="@+id/detail_destination"
+        android:layout_toEndOf="@+id/destination_textview"
+        android:layout_below="@+id/detail_destination"
+        android:layout_toRightOf="@+id/destination_textview"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cost:"
+        android:id="@+id/cost_textview"
+        android:layout_below="@+id/departure_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/departure_textview"
+        android:layout_alignEnd="@+id/departure_textview"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/detail_cost"
+        android:layout_alignRight="@+id/detail_departure"
+        android:layout_alignEnd="@+id/detail_departure"
+        android:layout_toEndOf="@+id/detail_busimage"
+        android:layout_below="@+id/detail_departure"
+        android:layout_alignLeft="@+id/detail_departure"
+        android:layout_alignStart="@+id/detail_departure"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Availabe On:"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/cost_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/detail_cost"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sunday,Monday"
+        android:id="@+id/detail_workingdays"
+        android:layout_toRightOf="@+id/cost_textview"
+        android:layout_below="@+id/cost_textview"
+        android:layout_alignRight="@+id/detail_cost"
+        android:layout_alignEnd="@+id/detail_cost" /><![CDATA[
+
+        android:layout_toRightOf=@+id/detail_busimage"
+        android:layout_toEndOf="@+id/detail_busimage"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp" />
+
+    ]]>
+
+    <Button
+        android:textColor="@android:color/white"
+        android:background="#125688"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book ticket"
+        android:id="@+id/bookbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/detail_busimage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:id="@+id/detail_busimage"
+        android:src="@drawable/navimage"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Extra Detail:"
+        android:id="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView4"
+        android:layout_toLeftOf="@+id/detail_workingdays"
+        android:layout_toStartOf="@+id/detail_workingdays"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/detail_extradetail"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:background="#125688"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/destination_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/detail_destination"
+        android:layout_alignEnd="@+id/detail_destination" />
+
+    <Button
+        android:textColor="@android:color/white"
+        android:background="#125688"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:text="View Seat Chart"
+        android:id="@+id/viewseatchart_button"
+        android:layout_above="@+id/imageView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="10dp" />
+
+
+</RelativeLayout>

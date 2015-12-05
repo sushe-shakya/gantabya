@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Package Type:"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:id="@+id/type"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/from" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/from"
+        android:layout_weight="1"
+        android:spinnerMode="dropdown"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/type"
+        android:layout_toEndOf="@+id/type" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pakage Price:"
+        android:id="@+id/price"
+        android:layout_below="@+id/type"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/destination" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/destination"
+        android:layout_below="@+id/from"
+        android:layout_toRightOf="@+id/type"
+        android:layout_toEndOf="@+id/type"
+        android:spinnerMode="dropdown" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="290dp"
+        android:id="@+id/ticketlistview"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/ticketsearchbutton"
+        android:layout_below="@+id/price"
+        android:layout_alignLeft="@+id/ticketlistview"
+        android:layout_alignStart="@+id/ticketlistview"
+        android:layout_alignRight="@+id/price"
+        android:layout_alignEnd="@+id/price" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:background="#125688"
+        android:id="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/ticketsearchbutton"
+        android:layout_above="@+id/ticketlistview" />
+
+</RelativeLayout>
