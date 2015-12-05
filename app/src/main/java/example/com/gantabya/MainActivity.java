@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
 
             switch (position) {
                 case 0: // for Packages
-                    new_fragment = new packages();
+                    new_fragment = new transportation();
 
                     break;
                 case 1: // for Transportation

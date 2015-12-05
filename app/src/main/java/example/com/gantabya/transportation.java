@@ -46,7 +46,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 /**
  * Created by Prasis on 11/10/2015.
  */
-public class transportation extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener {
+public class transportation extends android.support.v4.app.Fragment {
     AutoCompleteTextView ticketfrom, ticketdestination;
     TextView line;
     GridView ticketgridView;
@@ -79,6 +79,16 @@ public class transportation extends android.support.v4.app.Fragment implements A
         {
             Log.d("gantabya","error while calling ticketlist");
         }
+        ticketgridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Fragment ticketdetail = new ticket_detail(ticketinformation.get(position));
+                android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, ticketdetail);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
         ArrayAdapter<String> fromadapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,from);
         ticketfrom.setAdapter(fromadapter);
         ArrayAdapter<String> desadapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,destination);
@@ -88,30 +98,34 @@ public class transportation extends android.support.v4.app.Fragment implements A
             public void onClick(View v) {
                 InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                ArrayList<HashMap<String, String>> ticketfoundinformation = new ArrayList<>();
+                final ArrayList<HashMap<String, String>> ticketfoundinformation = new ArrayList<>();
                 ticketfoundinformation.clear();
                 for (int i = 0; i < ticketinformation.size(); i++) {
 
-                    if (ticketfrom.getText().toString().equalsIgnoreCase(ticketinformation.get(i).get("ticketfrom")) && ticketdestination.getText().toString().equalsIgnoreCase(ticketinformation.get(i).get("ticketdestination")))
+                    if (ticketfrom.getText().toString().equalsIgnoreCase(ticketinformation.get(i).get("ticketfrom")) && ticketdestination.getText().toString().equalsIgnoreCase(ticketinformation.get(i).get("ticketdestination"))) {
                         ticketfoundinformation.add(ticketinformation.get(i));
+                    }
                 }
-                if (ticketfoundinformation.isEmpty())
-                {Toast.makeText(getContext(), "Match not found", Toast.LENGTH_SHORT).show();}
+                if (ticketfoundinformation.isEmpty()) {
+                    Toast.makeText(getContext(), "Match not found", Toast.LENGTH_SHORT).show();
+                }
                 busticketadapter ticketfoundadapter = new busticketadapter(getContext(), ticketfoundinformation);
                 ticketgridView.setAdapter(ticketfoundadapter);
+                ticketgridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Fragment ticketdetail = new ticket_detail(ticketfoundinformation.get(position));
+                        android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, ticketdetail);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                });
             }
         });
-        ticketgridView.setOnItemClickListener(this);
+
         return myview;
     }
 
-    @Override // called when a bus ad is clicked
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Fragment ticketdetail = new ticket_detail(ticketinformation.get(position));
-        android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, ticketdetail);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 
     public class ticketlist extends AsyncTask<Void, Void, ArrayList<HashMap<String, String>>> {
         @Override
